@@ -7,6 +7,8 @@ import Availability from './pages/Availability.jsx';
 import MySchedule from './pages/MySchedule.jsx';
 import Coverage from './pages/Coverage.jsx';
 import Swaps from './pages/Swaps.jsx';
+import Overtime from './pages/Overtime.jsx';
+import Fairness from './pages/Fairness.jsx';
 
 function Guard({ children }) {
   const { user, ready } = useAuth();
@@ -41,6 +43,8 @@ export default function App() {
             <Route path="mine" element={<MySchedule />} />
             <Route path="coverage" element={<Coverage />} />
             <Route path="swaps" element={<Swaps />} />
+            <Route path="overtime" element={<Overtime />} />
+            <Route path="fairness" element={<Fairness />} />
           </Route>
         </Routes>
       </BrowserRouter>

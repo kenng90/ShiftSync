@@ -348,6 +348,19 @@ td {
   border-bottom: 1px solid var(--line);
 }
 
+.stat {
+  font-size: 1.15rem;
+  margin: 0 0 1rem;
+}
+
+tr.hot td {
+  background: #f8e4df;
+}
+
+tr.warm td {
+  background: #f7efd2;
+}
+
 @media (max-width: 900px) {
   .login-screen,
   .app-shell,

@@ -22,6 +22,8 @@ export default function Shell() {
           <NavLink to="/availability">Availability</NavLink>
           <NavLink to="/coverage">Coverage board</NavLink>
           <NavLink to="/swaps">{staff ? 'My requests' : 'Approvals'}</NavLink>
+          {!staff && <NavLink to="/overtime">Overtime</NavLink>}
+          {!staff && <NavLink to="/fairness">Fairness</NavLink>}
         </nav>
         <div className="who">
           <strong>
