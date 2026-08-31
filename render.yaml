@@ -5,16 +5,17 @@ services:
     plan: free
     buildCommand: npm ci && npm run build -w client
     startCommand: npm run start -w server
+    healthCheckPath: /health
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        generateValue: false
       - key: JWT_SECRET
         generateValue: true
       - key: CLIENT_ORIGIN
         sync: false
       - key: DB_HOST
+        sync: false
+      - key: DB_PORT
         sync: false
       - key: DB_USER
         sync: false

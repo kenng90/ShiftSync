@@ -10,6 +10,6 @@ const server = createServer(app);
 attachSockets(server);
 startJobs();
 
-server.listen(env.port, () => {
+server.listen(env.port, '0.0.0.0', () => {
   console.log(`ShiftSync API listening on port ${env.port}`);
 });
