@@ -8,6 +8,8 @@ import { locationsRouter } from './routes/locations.js';
 import { availabilityRouter } from './routes/availability.js';
 import { shiftsRouter } from './routes/shifts.js';
 import { swapsRouter } from './routes/swaps.js';
+import { laborRouter } from './routes/labor.js';
+import { fairnessRouter } from './routes/fairness.js';
 import { errorHandler, notFound } from './middleware/error.js';
 
 export function createApp() {
@@ -24,6 +26,8 @@ export function createApp() {
   app.use('/availability', availabilityRouter);
   app.use('/shifts', shiftsRouter);
   app.use('/swaps', swapsRouter);
+  app.use('/labor', laborRouter);
+  app.use('/fairness', fairnessRouter);
   app.use(notFound);
   app.use(errorHandler);
   return app;
