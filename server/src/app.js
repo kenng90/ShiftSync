@@ -5,6 +5,8 @@ import { healthRouter } from './routes/health.js';
 import { authRouter } from './routes/auth.js';
 import { usersRouter } from './routes/users.js';
 import { locationsRouter } from './routes/locations.js';
+import { availabilityRouter } from './routes/availability.js';
+import { shiftsRouter } from './routes/shifts.js';
 import { errorHandler, notFound } from './middleware/error.js';
 
 export function createApp() {
@@ -18,6 +20,8 @@ export function createApp() {
   app.use('/auth', authRouter);
   app.use('/users', usersRouter);
   app.use('/locations', locationsRouter);
+  app.use('/availability', availabilityRouter);
+  app.use('/shifts', shiftsRouter);
   app.use(notFound);
   app.use(errorHandler);
   return app;
