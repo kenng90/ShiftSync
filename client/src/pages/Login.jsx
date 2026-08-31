@@ -15,7 +15,7 @@ export default function Login() {
     setError('');
     try {
       const user = await login(email, password);
-      nav(user.role === 'staff' ? '/availability' : '/schedule');
+      nav(user.role === 'staff' ? '/mine' : '/schedule');
     } catch (err) {
       setError(err.message);
     }

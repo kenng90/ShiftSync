@@ -4,6 +4,9 @@ import Login from './pages/Login.jsx';
 import Shell from './pages/Shell.jsx';
 import Schedule from './pages/Schedule.jsx';
 import Availability from './pages/Availability.jsx';
+import MySchedule from './pages/MySchedule.jsx';
+import Coverage from './pages/Coverage.jsx';
+import Swaps from './pages/Swaps.jsx';
 
 function Guard({ children }) {
   const { user, ready } = useAuth();
@@ -14,7 +17,7 @@ function Guard({ children }) {
 
 function Home() {
   const { user } = useAuth();
-  if (user?.role === 'staff') return <Navigate to="/availability" replace />;
+  if (user?.role === 'staff') return <Navigate to="/mine" replace />;
   return <Navigate to="/schedule" replace />;
 }
 
@@ -35,6 +38,9 @@ export default function App() {
             <Route index element={<Home />} />
             <Route path="schedule" element={<Schedule />} />
             <Route path="availability" element={<Availability />} />
+            <Route path="mine" element={<MySchedule />} />
+            <Route path="coverage" element={<Coverage />} />
+            <Route path="swaps" element={<Swaps />} />
           </Route>
         </Routes>
       </BrowserRouter>
