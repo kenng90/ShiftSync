@@ -21,7 +21,7 @@ ShiftSync helps managers publish fair, legal schedules and helps staff swap or p
 ```bash
 cp .env.example .env
 cp .env.example server/.env
-docker compose up -d
+docker compose up -d   # MySQL on localhost:3307 (avoids Ubuntu's 3306)
 npm install
 npm run db:migrate
 npm run db:seed
