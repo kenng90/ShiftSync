@@ -25,8 +25,8 @@ docker compose up -d   # MySQL on localhost:3307 (avoids Ubuntu's 3306)
 npm install
 npm run db:migrate
 npm run db:seed
-npm run dev:server   # terminal 1 — API on :4000
-npm run dev:client   # terminal 2 — web on :5173
+npm run dev:server   # terminal 1: API on :4000
+npm run dev:client   # terminal 2: web on :5173
 ```
 
 `GET http://localhost:4000/health` should return `{ "status": "ok" }`.

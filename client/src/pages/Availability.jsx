@@ -46,8 +46,8 @@ export default function Availability() {
         <div>
           <h1>Availability</h1>
           <p className="muted">
-            “9am–5pm” means 9–5 at the restaurant you are scheduled at — Pacific at Cannon Beach, Eastern
-            at Charleston — including DST.
+            “9am–5pm” means 9–5 at the restaurant you are scheduled at: Pacific at Cannon Beach, Eastern
+            at Charleston: including DST.
           </p>
         </div>
       </header>

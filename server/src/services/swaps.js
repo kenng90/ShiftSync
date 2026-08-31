@@ -94,7 +94,7 @@ export async function acceptSwap(actor, id) {
   const shift = await db('shifts').where({ id: row.shift_id }).first();
   await notify([row.from_user_id], {
     type: 'swap_accepted',
-    title: 'Swap accepted — pending manager',
+    title: 'Swap accepted: pending manager',
     body: `${actor.first_name} accepted the swap. A manager still has to approve it.`,
     payload: { swapId: id },
   });

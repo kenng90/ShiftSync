@@ -237,7 +237,7 @@ export async function seed(knex) {
     from_user_id: 6,
     to_user_id: 7,
     status: 'pending_counterparty',
-    reason: 'Family dinner on Friday — can we trade for Saturday?',
+    reason: 'Family dinner on Friday: can we trade for Saturday?',
   });
 
   await knex('notification_preferences').insert(

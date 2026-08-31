@@ -37,7 +37,7 @@ export function fairnessScore(staffStats) {
     note:
       score >= 80
         ? 'Premium Friday/Saturday evenings look reasonably even.'
-        : 'Premium shifts are bunched on some people — check the distribution below.',
+        : 'Premium shifts are bunched on some people: check the distribution below.',
   };
 }
 

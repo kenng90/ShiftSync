@@ -6,7 +6,7 @@ Use the week of **31 Aug 2026** on Cannon Beach unless noted. Password: `Passwor
 
 1. Sign in as `liam.brooks@coastaleats.test`.
 2. Open Sunday 6 Sep, 19:00–23:00 bartender (Callie Ward).
-3. Fastest coverage: **Assign** on that shift — John and Maria should appear as qualified alternatives — or have Callie **Drop request** and another bartender use **Coverage board**.
+3. Fastest coverage: **Assign** on that shift: John and Maria should appear as qualified alternatives: or have Callie **Drop request** and another bartender use **Coverage board**.
 
 ## The Overtime Trap
 
@@ -34,4 +34,4 @@ Use the week of **31 Aug 2026** on Cannon Beach unless noted. Password: `Passwor
 
 1. Sign in as `sarah.nguyen@coastaleats.test`.
 2. A Friday swap with John is `pending_counterparty`.
-3. **Cancel (change of mind)** — original assignment stays; John is notified. Nothing moves until a manager would have approved.
+3. **Cancel (change of mind)**: original assignment stays; John is notified. Nothing moves until a manager would have approved.

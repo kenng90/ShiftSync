@@ -22,7 +22,7 @@ export async function notify(userIds, { type, title, body, payload }) {
     inserted.push({ id, ...row });
     const pref = await db('notification_preferences').where({ user_id: row.user_id }).first();
     if (pref?.channel === 'in_app_email') {
-      console.log(`[email-sim] to user ${row.user_id}: ${title} — ${body}`);
+      console.log(`[email-sim] to user ${row.user_id}: ${title}: ${body}`);
     }
     bus.io?.to(`user:${row.user_id}`).emit('notification', {
       id,

@@ -23,7 +23,7 @@ export default function OnDuty() {
     <div>
       <header className="page-head">
         <h1>On duty now</h1>
-        <p className="muted">Live. Updates when someone clocks in or out — no refresh needed.</p>
+        <p className="muted">Live. Updates when someone clocks in or out: no refresh needed.</p>
       </header>
       {[...byLocation.entries()].map(([name, people]) => (
         <section key={name} className="card">
