@@ -146,11 +146,19 @@ shiftsRouter.delete(
 
 shiftsRouter.get(
   '/:id/eligible',
-  requireRole('admin', 'manager'),
   wrap(async (req, res) => {
     const shift = await db('shifts').where({ id: req.params.id }).first();
+    if (!shift) throw new HttpError(404, 'Shift not found.');
+    if (req.user.role === 'staff') {
+      const mine = await db('shift_assignments')
+        .where({ shift_id: shift.id, user_id: req.user.id })
+        .whereNot({ status: 'removed' })
+        .first();
+      if (!mine) throw new HttpError(403, 'You can only list teammates for your own shifts.');
+    } else {
+      await assertLocationAccess(req.user, shift.location_id);
+    }
     const location = await db('locations').where({ id: shift.location_id }).first();
-    await assertLocationAccess(req.user, shift.location_id);
     const rangeStart = DateTime.fromJSDate(new Date(shift.starts_at), { zone: 'utc' }).minus({ days: 8 }).toJSDate();
     const rangeEnd = DateTime.fromJSDate(new Date(shift.ends_at), { zone: 'utc' }).plus({ days: 8 }).toJSDate();
     const candidates = await loadCandidatesForShift(shift, rangeStart, rangeEnd);
