@@ -1,3 +1,5 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
 import express from 'express';
 import cors from 'cors';
 import { env } from './config/env.js';
@@ -15,25 +17,49 @@ import { onDutyRouter } from './routes/onDuty.js';
 import { auditRouter } from './routes/audit.js';
 import { errorHandler, notFound } from './middleware/error.js';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+function mountApi(router) {
+  router.use('/health', healthRouter);
+  router.use('/auth', authRouter);
+  router.use('/users', usersRouter);
+  router.use('/locations', locationsRouter);
+  router.use('/availability', availabilityRouter);
+  router.use('/shifts', shiftsRouter);
+  router.use('/swaps', swapsRouter);
+  router.use('/labor', laborRouter);
+  router.use('/fairness', fairnessRouter);
+  router.use('/notifications', notificationsRouter);
+  router.use('/on-duty', onDutyRouter);
+  router.use('/audit', auditRouter);
+}
+
 export function createApp() {
   const app = express();
   app.use(cors({ origin: env.clientOrigin, credentials: true }));
   app.use(express.json());
-  app.get('/', (_req, res) => {
-    res.json({ name: 'ShiftSync API', status: 'ok' });
-  });
-  app.use('/health', healthRouter);
-  app.use('/auth', authRouter);
-  app.use('/users', usersRouter);
-  app.use('/locations', locationsRouter);
-  app.use('/availability', availabilityRouter);
-  app.use('/shifts', shiftsRouter);
-  app.use('/swaps', swapsRouter);
-  app.use('/labor', laborRouter);
-  app.use('/fairness', fairnessRouter);
-  app.use('/notifications', notificationsRouter);
-  app.use('/on-duty', onDutyRouter);
-  app.use('/audit', auditRouter);
+  if (process.env.NODE_ENV !== 'production') {
+    app.get('/', (_req, res) => {
+      res.json({ name: 'ShiftSync API', status: 'ok' });
+    });
+  }
+  mountApi(app);
+  const api = express.Router();
+  mountApi(api);
+  app.use('/api', api);
+
+  if (process.env.NODE_ENV === 'production') {
+    const dist = path.resolve(__dirname, '../../client/dist');
+    app.use(express.static(dist));
+    app.use((req, res, next) => {
+      if (req.method !== 'GET') return next();
+      if (req.path.startsWith('/api') || req.path.startsWith('/health') || req.path.startsWith('/socket.io')) {
+        return next();
+      }
+      res.sendFile(path.join(dist, 'index.html'));
+    });
+  }
+
   app.use(notFound);
   app.use(errorHandler);
   return app;
