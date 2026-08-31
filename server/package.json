@@ -10,7 +10,7 @@
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
     "lint": "eslint src",
-    "test": "node --test test/**/*.test.js"
+    "test": "node --test test/"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
