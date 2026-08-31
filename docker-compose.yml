@@ -1,0 +1,23 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: shiftsync-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: shiftsync
+      MYSQL_USER: shiftsync
+      MYSQL_PASSWORD: shiftsync
+    ports:
+      - '3306:3306'
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - shiftsync_mysql:/var/lib/mysql
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', '127.0.0.1', '-ushiftsync', '-pshiftsync']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  shiftsync_mysql:
