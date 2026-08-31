@@ -19,6 +19,6 @@
     "db:seed": "npm run seed -w server"
   },
   "engines": {
-    "node": ">=20"
+    "node": "20.x"
   }
 }
