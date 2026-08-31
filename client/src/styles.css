@@ -387,6 +387,18 @@ aside a em {
   margin-left: 0.3rem;
 }
 
+fieldset {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  margin: 0.8rem 0;
+}
+
+fieldset legend {
+  font-family: Fraunces, Georgia, serif;
+  padding: 0 0.3rem;
+}
+
 @media (max-width: 900px) {
   .login-screen,
   .app-shell,
