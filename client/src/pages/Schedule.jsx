@@ -4,6 +4,7 @@ import { api } from '../api.js';
 import { useAuth } from '../AuthContext.jsx';
 import { mondayOf, weekDays } from '../dates.js';
 import ConstraintBanner from '../components/ConstraintBanner.jsx';
+import { useLive } from '../SocketContext.jsx';
 
 export default function Schedule() {
   const { user } = useAuth();
@@ -16,6 +17,8 @@ export default function Schedule() {
   const [assign, setAssign] = useState(null);
   const [error, setError] = useState(null);
   const [reload, setReload] = useState(0);
+  const [history, setHistory] = useState(null);
+  const live = useLive();
 
   const from = DateTime.fromISO(weekStart).minus({ days: 1 }).toUTC().toISO();
   const to = DateTime.fromISO(weekStart).plus({ days: 8 }).toUTC().toISO();
@@ -33,7 +36,7 @@ export default function Schedule() {
     api(`/shifts?locationId=${locationId}&from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`)
       .then((d) => setShifts(d.shifts))
       .catch((e) => setError(e));
-  }, [locationId, weekStart, from, to, reload]);
+  }, [locationId, weekStart, from, to, reload, live?.tick]);
 
   const location = locations.find((l) => l.id === Number(locationId));
   const days = weekDays(weekStart);
@@ -117,6 +120,9 @@ export default function Schedule() {
                     <button type="button" onClick={() => setForm({ ...s, date: s.localDate, startTime: s.localStart, endTime: s.localEnd })}>
                       Edit
                     </button>
+                    <button type="button" onClick={() => api(`/shifts/${s.id}/history`).then((d) => setHistory(d.history))}>
+                      History
+                    </button>
                   </footer>
                 </article>
               ))}
@@ -145,6 +151,23 @@ export default function Schedule() {
             setReload((n) => n + 1);
           }}
         />
+      ) : null}
+      {history ? (
+        <div className="modal">
+          <div className="card wide">
+            <h2>Shift history</h2>
+            <ul>
+              {history.map((h) => (
+                <li key={h.id}>
+                  {h.action} by {h.email || 'system'} at {String(h.created_at)}
+                </li>
+              ))}
+            </ul>
+            <button type="button" onClick={() => setHistory(null)}>
+              Close
+            </button>
+          </div>
+        </div>
       ) : null}
     </div>
   );
