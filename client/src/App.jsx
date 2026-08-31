@@ -13,6 +13,7 @@ import Fairness from './pages/Fairness.jsx';
 import Inbox from './pages/Inbox.jsx';
 import OnDuty from './pages/OnDuty.jsx';
 import Audit from './pages/Audit.jsx';
+import People from './pages/People.jsx';
 
 function Guard({ children }) {
   const { user, ready } = useAuth();
@@ -53,6 +54,7 @@ export default function App() {
             <Route path="on-duty" element={<OnDuty />} />
             <Route path="inbox" element={<Inbox />} />
             <Route path="audit" element={<Audit />} />
+            <Route path="people" element={<People />} />
           </Route>
         </Routes>
       </BrowserRouter>

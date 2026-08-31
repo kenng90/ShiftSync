@@ -36,6 +36,7 @@ export default function Shell() {
           {!staff && <NavLink to="/overtime">Overtime</NavLink>}
           {!staff && <NavLink to="/fairness">Fairness</NavLink>}
           {!staff && <NavLink to="/on-duty">On duty now</NavLink>}
+          {!staff && <NavLink to="/people">People</NavLink>}
           {user.role === 'admin' && <NavLink to="/audit">Audit</NavLink>}
           <NavLink to="/inbox">
             Inbox {unread ? <em>{unread}</em> : null}
