@@ -30,3 +30,36 @@ npm run dev:client   # terminal 2 — web on :5173
 ```
 
 `GET http://localhost:4000/health` should return `{ "status": "ok" }`.
+
+## Demo logins
+
+Password for every account: **`Password123!`**
+
+| Who | Email |
+|---|---|
+| Admin | `ava.cole@coastaleats.test` |
+| West manager | `liam.brooks@coastaleats.test` |
+| East manager | `maya.ortiz@coastaleats.test` |
+| Dual-timezone staff | `jordan.park@coastaleats.test` |
+| Overtime trap | `marcus.chen@coastaleats.test` |
+| Regret swap | `sarah.nguyen@coastaleats.test` |
+| Sunday call-out | `callie.ward@coastaleats.test` |
+
+See [docs/logins.md](docs/logins.md) and [docs/scenarios.md](docs/scenarios.md).
+
+## Docs
+
+- [Assumptions](docs/assumptions.md)
+- [Known limitations](docs/limitations.md)
+- [Availability vs desired hours](docs/availability.md)
+- [Timezones](docs/timezones.md)
+
+## Production
+
+```bash
+npm install
+npm run build -w client
+NODE_ENV=production npm run start -w server
+```
+
+The API then serves `client/dist` on the same origin. Set MySQL env vars and `JWT_SECRET`. A sample Render blueprint is in `render.yaml`.
