@@ -1,0 +1,24 @@
+{
+  "name": "shiftsync",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Multi-location staff scheduling platform for Coastal Eats",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces --if-present",
+    "dev:server": "npm run dev -w server",
+    "dev:client": "npm run dev -w client",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "format": "prettier --write .",
+    "db:migrate": "npm run migrate -w server",
+    "db:rollback": "npm run rollback -w server",
+    "db:seed": "npm run seed -w server"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
