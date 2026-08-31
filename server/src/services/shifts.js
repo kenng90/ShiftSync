@@ -4,6 +4,7 @@ import { db } from '../db/knex.js';
 import { checkAssignment, suggestAlternatives } from '../lib/constraints.js';
 import { ConstraintError, HttpError } from '../lib/errors.js';
 import { inZone, isoFromUtc, localWallToUtc, overnightInterval } from '../lib/time.js';
+import { isPremium } from '../lib/premium.js';
 import { writeAudit } from './audit.js';
 import { emitSchedule, emitUser, notify } from './notify.js';
 import { loadCandidatesForShift, loadStaffContext } from './staffContext.js';
@@ -38,12 +39,6 @@ export function serializeShift(shift, location) {
     status: shift.status,
     premium: isPremium(shift.starts_at, tz),
   };
-}
-
-export function isPremium(startsAt, timezone) {
-  const local = inZone(startsAt, timezone);
-  const evening = local.hour >= 17;
-  return (local.weekday === 5 || local.weekday === 6) && evening;
 }
 
 export async function createShift(actor, body) {
