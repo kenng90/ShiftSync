@@ -1,0 +1,60 @@
+:root {
+  --sea: #0b3d4a;
+  --tide: #1a6b7a;
+  --foam: #e8f4f2;
+  --sand: #f4efe6;
+  --ink: #142326;
+  --coral: #c45c4a;
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--sand);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Fraunces, Georgia, serif;
+  font-weight: 600;
+}
+
+.splash {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  background:
+    radial-gradient(circle at top, #1a6b7a 0%, transparent 45%),
+    var(--sea);
+  color: var(--foam);
+  padding: 2rem;
+}
+
+.splash h1 {
+  margin: 0.2rem 0 0.6rem;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+}
+
+.eyebrow {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.lede {
+  margin: 0;
+  max-width: 28rem;
+  opacity: 0.9;
+}
