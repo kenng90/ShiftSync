@@ -1,7 +1,11 @@
 import express from 'express';
 import cors from 'cors';
-import { healthRouter } from './routes/health.js';
 import { env } from './config/env.js';
+import { healthRouter } from './routes/health.js';
+import { authRouter } from './routes/auth.js';
+import { usersRouter } from './routes/users.js';
+import { locationsRouter } from './routes/locations.js';
+import { errorHandler, notFound } from './middleware/error.js';
 
 export function createApp() {
   const app = express();
@@ -11,5 +15,10 @@ export function createApp() {
     res.json({ name: 'ShiftSync API', status: 'ok' });
   });
   app.use('/health', healthRouter);
+  app.use('/auth', authRouter);
+  app.use('/users', usersRouter);
+  app.use('/locations', locationsRouter);
+  app.use(notFound);
+  app.use(errorHandler);
   return app;
 }
