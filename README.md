@@ -62,4 +62,4 @@ npm run build -w client
 NODE_ENV=production npm run start -w server
 ```
 
-The API then serves `client/dist` on the same origin. Set MySQL env vars and `JWT_SECRET`. A sample Render blueprint is in `render.yaml`.
+The API then serves `client/dist` on the same origin. Set MySQL env vars and `JWT_SECRET`. A sample Render blueprint is in `render.yaml`. On Render’s free plan there is no Shell; the start command runs migrations and seeds an empty database.

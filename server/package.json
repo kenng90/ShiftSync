@@ -9,6 +9,7 @@
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
+    "prepare-db": "node scripts/prepare-db.js",
     "lint": "eslint src",
     "test": "node --test test/"
   },
