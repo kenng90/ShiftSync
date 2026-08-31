@@ -10,6 +10,9 @@ import { shiftsRouter } from './routes/shifts.js';
 import { swapsRouter } from './routes/swaps.js';
 import { laborRouter } from './routes/labor.js';
 import { fairnessRouter } from './routes/fairness.js';
+import { notificationsRouter } from './routes/notifications.js';
+import { onDutyRouter } from './routes/onDuty.js';
+import { auditRouter } from './routes/audit.js';
 import { errorHandler, notFound } from './middleware/error.js';
 
 export function createApp() {
@@ -28,6 +31,9 @@ export function createApp() {
   app.use('/swaps', swapsRouter);
   app.use('/labor', laborRouter);
   app.use('/fairness', fairnessRouter);
+  app.use('/notifications', notificationsRouter);
+  app.use('/on-duty', onDutyRouter);
+  app.use('/audit', auditRouter);
   app.use(notFound);
   app.use(errorHandler);
   return app;
