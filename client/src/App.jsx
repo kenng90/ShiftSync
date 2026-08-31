@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AuthProvider, useAuth } from './AuthContext.jsx';
+import { SocketProvider } from './SocketContext.jsx';
 import Login from './pages/Login.jsx';
 import Shell from './pages/Shell.jsx';
 import Schedule from './pages/Schedule.jsx';
@@ -9,6 +10,9 @@ import Coverage from './pages/Coverage.jsx';
 import Swaps from './pages/Swaps.jsx';
 import Overtime from './pages/Overtime.jsx';
 import Fairness from './pages/Fairness.jsx';
+import Inbox from './pages/Inbox.jsx';
+import OnDuty from './pages/OnDuty.jsx';
+import Audit from './pages/Audit.jsx';
 
 function Guard({ children }) {
   const { user, ready } = useAuth();
@@ -26,6 +30,7 @@ function Home() {
 export default function App() {
   return (
     <AuthProvider>
+      <SocketProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -45,9 +50,13 @@ export default function App() {
             <Route path="swaps" element={<Swaps />} />
             <Route path="overtime" element={<Overtime />} />
             <Route path="fairness" element={<Fairness />} />
+            <Route path="on-duty" element={<OnDuty />} />
+            <Route path="inbox" element={<Inbox />} />
+            <Route path="audit" element={<Audit />} />
           </Route>
         </Routes>
       </BrowserRouter>
+      </SocketProvider>
     </AuthProvider>
   );
 }

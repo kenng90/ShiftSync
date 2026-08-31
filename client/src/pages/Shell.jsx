@@ -1,10 +1,21 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { api } from '../api.js';
 import { useAuth } from '../AuthContext.jsx';
+import { useLive } from '../SocketContext.jsx';
 
 export default function Shell() {
   const { user, logout } = useAuth();
+  const live = useLive();
   const nav = useNavigate();
   const staff = user.role === 'staff';
+  const [unread, setUnread] = useState(0);
+
+  useEffect(() => {
+    api('/notifications')
+      .then((d) => setUnread(d.notifications.filter((n) => !n.readAt).length))
+      .catch(() => {});
+  }, [live?.tick]);
 
   return (
     <div className="app-shell">
@@ -24,6 +35,11 @@ export default function Shell() {
           <NavLink to="/swaps">{staff ? 'My requests' : 'Approvals'}</NavLink>
           {!staff && <NavLink to="/overtime">Overtime</NavLink>}
           {!staff && <NavLink to="/fairness">Fairness</NavLink>}
+          {!staff && <NavLink to="/on-duty">On duty now</NavLink>}
+          {user.role === 'admin' && <NavLink to="/audit">Audit</NavLink>}
+          <NavLink to="/inbox">
+            Inbox {unread ? <em>{unread}</em> : null}
+          </NavLink>
         </nav>
         <div className="who">
           <strong>

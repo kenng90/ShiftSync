@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api.js';
 import { useAuth } from '../AuthContext.jsx';
+import { useLive } from '../SocketContext.jsx';
 import ConstraintBanner from '../components/ConstraintBanner.jsx';
 
 export default function Swaps() {
   const { user } = useAuth();
+  const live = useLive();
   const [requests, setRequests] = useState([]);
   const [mine, setMine] = useState([]);
   const [error, setError] = useState(null);
@@ -20,7 +22,7 @@ export default function Swaps() {
 
   useEffect(() => {
     load().catch((e) => setError(e));
-  }, [user.role]);
+  }, [user.role, live?.tick]);
 
   async function act(id, action) {
     setError(null);
